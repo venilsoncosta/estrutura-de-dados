@@ -10,3 +10,4 @@ function somaNaturais(n){
 const teste = somaNaturais(50);
 
 console.log(teste);
+
