@@ -1,4 +1,4 @@
-/*function fatroialRecursivo(n){
+function fatroialRecursivo(n){
 
 	if(n === 1){
 		return 1;
@@ -10,12 +10,12 @@
 }
 
 const testeResultado = fatroialRecursivo(5);
-console.log(testeResultado);*/
+console.log(testeResultado);
 
 
 //---------------------------------------------------------------------------------
 
-/*function fatorialRecursivo(n){
+function fatorialRecursivo(n){
 	if(n===1){
 		return 1;
 	}else{
@@ -23,7 +23,7 @@ console.log(testeResultado);*/
 	}
 }
 const testeResultado2=fatorialRecursivo(5);
-console.log(testeResultado2);*/
+console.log(testeResultado2);
 
 
 
