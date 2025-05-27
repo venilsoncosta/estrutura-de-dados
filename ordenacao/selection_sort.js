@@ -5,9 +5,10 @@ const selection_sort = (nums) => {
 		for(let j = i + 1; j < N; j++){
 			if(nums[j] < nums[minIndex])
 				minIndex = j;
+
+		}
 		if (minIndex != i)
 			swap(nums, i, minIndex);
-		}
 	}
 	return nums;
 };
