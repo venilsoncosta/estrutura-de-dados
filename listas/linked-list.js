@@ -15,12 +15,12 @@ class LinkedList {
 		return this.size;
 	}
 
-	// Código mais conciso e uso de '==='
+
 	estaVazia = () => {
 		return this.head === null;
 	}
 
-	// Lógica simplificada que cobre todos os casos
+
 	addNoInicio = (elemento) => {
 		const node = new Node(elemento);
 		node.next = this.head;
@@ -39,12 +39,12 @@ class LinkedList {
 			}
 			atual.next = node;
 		}
-		this.size++; // Incrementa o tamanho uma vez só
+		this.size++;
 	}
 
-	// --> Sugestão 4: Validação de índice mais robusta
+
 	addNaPosicao = (index, elemento) => {
-		// Valida se o índice está dentro dos limites (0 até o tamanho atual)
+
 		if (index < 0 || index > this.size) {
 			console.error(`Erro: Índice ${index} é inválido para uma lista de tamanho ${this.size}.`);
 			return;
@@ -70,7 +70,7 @@ class LinkedList {
 			elementos.push(noAtual.value);
 			noAtual = noAtual.next;
 		}
-		console.log(elementos.join(" -> ")); // Alterei para '->' para diferenciar da sua saída original
+		console.log(elementos.join(" -> "));
 	}
 
 	pega = (index) => {
@@ -78,11 +78,64 @@ class LinkedList {
 		if (atual) {
 			return atual.value;
 		}
-		return null; // Retorna null se não encontrar
+		return null;
 	}
 
+	contemElemento = (elemento) => {
+		let indexElemento = this.pegaIndex(elemento);
+		if (indexElemento !== -1){
+			return true;
+		}
+		return false;
+	}
+
+	//pegando o indice do elemtno passado como parametro
+	pegaIndex = (elemento)  => {
+		let atual = this.head;
+		let i = 0;
+		while (atual){
+			if (atual.value === elemento){
+				return i;
+			}
+			atual = atual.next;
+			i++;
+		}
+		return -1;
+	}
+
+	removeNaPosicao = (index) => {
+		if (this.estaVazia() || !this.pegaIndex(index)){
+			return null;
+		}
+
+		let item = null;
+		let aux = null;
+
+		if (index === 0){
+			item = this.head.value;
+			this.head = this.head.next;
+			this.size--;
+			return item;
+		}
+
+		if (index === this.tamanhoLista() - 1){
+			item = this.pega(index);
+			aux = this.pegaNode(index - 1);
+			aux.next = null;
+			this.size--;
+			return item;
+		}
+
+		aux = this.pegaNode(index - 1);
+		item = aux.next.value;
+		aux.next = aux.next.next;
+		this.size--;
+		return item;
+	}
+
+	//pegando o valor de um index passado por parâmetro
 	pegaNode = (index) => {
-		// --> Sugestão 3: Correção na validação do limite do índice
+
 		if (index < 0 || index >= this.size) {
 			return null;
 		}
@@ -110,18 +163,25 @@ console.log("\nAdicionando 100 no início:");
 linkedList.addNoInicio(100);
 linkedList.exibirLista();
 
-console.log("\nPegando o elemento na posição 2:", linkedList.pega(2)); // Deverá ser 9
+console.log("\nPegando o elemento na posição 2:", linkedList.pega(2));
 
 console.log("\nAdicionando elementos em posições específicas:");
-linkedList.addNaPosicao(2, 7); // Adiciona 7 entre 20 e 9
+linkedList.addNaPosicao(2, 7);
 linkedList.exibirLista();
 
-linkedList.addNaPosicao(0, 777); // Adiciona no início
+linkedList.addNaPosicao(0, 777);
 linkedList.exibirLista();
 
-linkedList.addNaPosicao(7, 999); // Adiciona no final (índice igual ao tamanho)
+linkedList.addNaPosicao(7, 999);
 linkedList.exibirLista();
 
 console.log(linkedList.tamanhoLista())
 
-linkedList.addNaPosicao(10, 1010); // Tentativa de adicionar em índice inválido
+linkedList.addNaPosicao(10, 1010);
+
+console.log("O elemento 20 está na lista? ", linkedList.contemElemento(20));
+
+console.log("Imprime lista")
+linkedList.exibirLista();
+console.log("Removendo na posição 2:",linkedList.removeNaPosicao(2))
+linkedList.exibirLista();
