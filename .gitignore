@@ -1,0 +1,12 @@
+*.class
+*.jar
+*.war
+# Pastas de IDEs
+.settings/
+.bin/
+.project/
+.classpath/
+.vscode/
+.idea/
+bin/
+target/
